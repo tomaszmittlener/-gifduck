@@ -12,8 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: GitHub Action to unlock git-crypt secrets
-        uses: sliteteam/github-action-git-crypt-unlock@1.0.2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
