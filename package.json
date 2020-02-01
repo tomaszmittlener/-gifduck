@@ -44,7 +44,7 @@
     "check:server": "lerna exec --scope @gifduck/server yarn check-pkg",
     "build:client": "lerna exec --scope @gifduck/client yarn build",
     "build:server": "lerna exec --scope @gifduck/server yarn build",
-    "start:server": "node ./packages/server/dist/index.js"
+    "start:server": "lerna exec --scope @gifduck/server yarn start"
   },
   "husky": {
     "hooks": {
