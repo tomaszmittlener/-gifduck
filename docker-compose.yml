@@ -1,0 +1,47 @@
+#the docker compose file version
+version: '3.7'
+# you can run multiple services inside one docker compose file
+# define them with their dependencies one after the other
+services:
+  # service 1 named client
+  client:
+    # service 1 container name
+    container_name: client-app
+    build:
+      # the context (working directory) is the current directory
+      # change this to the directory containing the dockerfile if in a different place
+      context: .
+      # the dockerfile to be run
+      dockerfile: Dockerfile-client
+    # map the exposed port from the underlying service to a port exposed to the outside
+    # in this case  map port 3000 exposed by nginx to port 3000 on the outside
+    # to be used to access the container from the outside
+    ports:
+      - '3000:3000'
+    networks:
+      - microservices-net
+
+  # service 2 named server
+  server:
+    # service 2 container name
+    container_name: server-app
+    build:
+      # the context (working directory) is the current directory
+      # change this to the directory containing the dockerfile if in a different place
+      context: .
+      # the dockerfile to be run
+      dockerfile: Dockerfile-server
+    # map the exposed port from the underlying service to a port exposed to the outside
+    # in this case map port 4000 exposed by express to port 4000 on the outside
+    # to be used to access the container from the outside
+    ports:
+      - '4000:4000'
+    networks:
+      - microservices-net
+
+# network established between containers named microservices-net
+# in order to use it, you need to create it with "docker network create microservices-net"
+networks:
+  microservices-net:
+    driver: bridge
+    external: true
