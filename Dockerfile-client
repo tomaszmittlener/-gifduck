@@ -18,7 +18,6 @@ RUN yarn
 RUN yarn check:client
 RUN yarn test:client
 RUN yarn build:client
-
 # set up production environment
 # the base image for this is an alpine based nginx image
 FROM nginx:alpine
